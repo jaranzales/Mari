@@ -5,11 +5,11 @@ resource "azurerm_linux_web_app" "wapp_lnx" {
   service_plan_id     = var.service_plan_id
   public_network_access_enabled = var.public_network_access_enabled
   https_only = var.https_only
-
-site_config {
+  site_config {
     application_stack {
-      python_version = var.app_stack.python_version
       node_version = var.application_stack.node_version
+      python_version = var.application_stack.python_version
     }
+
   }
 }

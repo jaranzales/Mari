@@ -81,7 +81,7 @@ module "web_app_linux_node_001" {
   wapp_name = var.wapp_name_001
   resource_group_name = module.resource_group.resource_group_name
   resource_group_location = module.resource_group.resource_group_location
-  service_plan_id = module.service_plan.app_service_plan_id
+  service_plan_id = module.service_plan.id
   public_network_access_enabled = var.wapp_public_network_access_enabled_001
   https_only = var.wapp_https_only_001
   application_stack = var.wapp_application_stack_001
@@ -125,7 +125,7 @@ module "private_endpoint_stac" {
   private_endpoint_name = var.private_endpoint_stac_name
   resource_group_name = module.resource_group.resource_group_name
   resource_group_location = module.resource_group.resource_group_location
-  subnet_id = module.azure_networking.sbnet_stac_id
+  subnet_id = module.azure_networking.subnet_stac_id
   private_service_connection_name = var.private_service_connection_stac_name
   private_connection_resource_id = module.azure_stac.storage_account_id
   subresource_names = var.subresource_names_stac
@@ -149,8 +149,8 @@ module "mssql_server" {
   sql_server_name = var.sql_server_name
   resource_group_location = module.resource_group.resource_group_location
   resource_group_name = module.resource_group.resource_group_name
-  administrator_login = module.mssql_key_vault.kv_secret_sql_admin_user
-  administrator_login_password = module.mssql_key_vault.kv_secret_sql_admin_password
+  administrator_login = module.mssql_key_vault.admin_username.value
+  administrator_login_password = module.mssql_key_vault.admin_password.value
 }
 
 module "mssql_virtual_network_rule" {
@@ -162,7 +162,7 @@ module "mssql_virtual_network_rule" {
 
 module "mssql_database" {
   source = "./modules/mssql/mssql_database"
-  database_name = module.mssql_server.sql_server_name
+  database_name = var.sql_database_name
   server_id = module.mssql_server.id
   sku_name = var.sql_database_sku
   max_size_gb = var.sql_database_gb_size
@@ -207,7 +207,7 @@ module "machine_learning_stac" {
 
 module "ml_stac_network_rules" {
   source = "./modules/storage_accounts/network_rules"
-  storage_account_id = module.machine_learning_stac.id
+  storage_account_id = module.machine_learning_stac.storage_account_id
   default_action = var.default_action
   subnet_stac_id = module.azure_networking.subnet_stac_id
   bypass = var.stac_bypass
@@ -325,7 +325,6 @@ module "aisa_private_endpoint" {
   private_dns_zone_ids = [ module.azure_networking.private_dns_zone_aisa_id ]
 }
 
-#pendientes
 module "di_cognitive_account" {
   source = "./modules/cognitive_account"
   services_account_name = var.document_intelligence_account_name
@@ -338,7 +337,7 @@ module "di_cognitive_account" {
 }
 
 module "di_private_endpoint" {
-  source = "../../modules/private_endpoint"
+  source = "./modules/private_endpoint"
   private_endpoint_name = var.private_endpoint_di_name
   resource_group_name = module.resource_group.resource_group_name
   resource_group_location = module.resource_group.resource_group_location
@@ -351,7 +350,7 @@ module "di_private_endpoint" {
 }
 
 module "openai_cognitive_account" {
-  source = "../../modules/cognitive_account"
+  source = "./modules/cognitive_account"
   services_account_name = var.openai_account_name
   resource_group_name = module.resource_group.resource_group_name
   resource_group_location = module.resource_group.resource_group_location
@@ -362,7 +361,7 @@ module "openai_cognitive_account" {
 }
 
 module "openai_private_endpoint" {
-  source = "../../modules/private_endpoint"
+  source = "./modules/private_endpoint"
   private_endpoint_name = var.private_endpoint_openai_name
   resource_group_name = module.resource_group.resource_group_name
   resource_group_location = module.resource_group.resource_group_location
@@ -377,7 +376,7 @@ module "openai_private_endpoint" {
 data "azurerm_client_config" "current" {}
 
 module "bot_service_azure_bot" {
-  source = "../../modules/bot_service_azure_bot"
+  source = "./modules/bot_service_azure_bot"
   bot_name = var.bot_name
   resource_group_name = module.resource_group.resource_group_name
   location = var.bot_location
@@ -387,7 +386,7 @@ module "bot_service_azure_bot" {
 }
 
 module "bot_private_endpoint" {
-  source = "../../modules/private_endpoint"
+  source = "./modules/private_endpoint"
   private_endpoint_name = var.private_endpoint_bot_name
   resource_group_name = module.resource_group.resource_group_name
   resource_group_location = module.resource_group.resource_group_location
@@ -396,11 +395,11 @@ module "bot_private_endpoint" {
   private_connection_resource_id = module.bot_service_azure_bot.id
   subresource_names = var.bot_subresource_names
   resource_group_name_dns = var.resource_group_name_dns
-  private_dns_zone_ids = [module.azure_networking.private_dns_zone_bot_id]
+  private_dns_zone_ids = [ module.azure_networking.private_dns_zone_bot_id ]
 }
 
 module "bot_token_private_endpoint" {
-  source = "../../modules/private_endpoint"
+  source = "./modules/private_endpoint"
   private_endpoint_name = var.private_endpoint_bot_token_name
   resource_group_name = module.resource_group.resource_group_name
   resource_group_location = module.resource_group.resource_group_location

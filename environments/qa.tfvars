@@ -95,14 +95,17 @@ kv_secret_sql_admin_password = "sql-kv-admin-pass"
 #MSSQL_SERVER
 sql_server_name = "az-sc-qa-sql-mari-000"
 
+#MSSQL_DATABASE
+sql_database_name = "az-sc-qa-sqldb-mari-000"
+
 #MSSQL_VIRTUAL_NETWORK_RULE
 sql_server_vnet_rule_name = "az-sc-qa-sql-rule-mari-000"
 sql_database_sku = "S1"
 sql_database_gb_size = "250"
 
 #MSSQL_PRIVATE_ENDPOINT
-private_endpoint_sql_name = "$(private_endpoint_sql_name)"
-private_service_connection_sql_name = "$(private_service_connection_sql_name)"
+private_endpoint_sql_name = "az-sc-qa-pep-sql-mari-000"
+private_service_connection_sql_name = "az-sc-qa-psc-sql-mari-000"
 
 # ================== MACHINE LEARNING =========================
 
@@ -131,10 +134,6 @@ subresource_kv_names = [ "vault" ]
 #ML_APPLICATION_INSIGHTS
 appinsight_name = "az-sc-qa-appi-mari-000"
 application_type_ml = "web"
-
-#ML_APPLICATION_INSIGHTS
-appinsight_name = "$(appinsight_name)"
-application_type_ml = "$(application_type_ml)"
 
 #ML_APPLICATION_INSIGHTS_API_KEY
 appinsight_api_key_name = "az-sc-qa-appi-key-mari-000"
@@ -170,34 +169,42 @@ private_endpoint_aisa_name = "az-sc-pep-qa-aisa-mari-000"
 private_service_connection_aisa_name = "az-sc-qa-psc-aisa-mari-000" 
 aisa_subresource_names = ["account"]
 
+#DI_COGNITIVE_ACCOUNT
+document_intelligence_account_name = "az-sc-qa-di-mari-000"
+document_intelligence_kind = "FormRecognizer"
+document_intelligence_sku = "S0"
+document_intelligence_custom_subdomain_name = "qa-di-mari-000"
+document_intelligence_public_network_access_enabled = false
 
-document_intelligence_account_name = "$(document_intelligence_account_name)"
-document_intelligence_kind = "$(document_intelligence_kind)"
-document_intelligence_sku = "$(document_intelligence_sku)"
-document_intelligence_custom_subdomain_name = "$(document_intelligence_custom_subdomain_name)"
-document_intelligence_public_network_access_enabled = $(document_intelligence_public_network_access_enabled)
-
-private_endpoint_di_name = "$(private_endpoint_di_name)"
-private_service_connection_di_name = "$(private_service_connection_di_name)"
+#DI_PRIVATE_ENDPOINT
+private_endpoint_di_name = "az-sc-pep-qa-di-mari-000"
+private_service_connection_di_name = "az-sc-qa-psc-di-mari-000"
 di_subresource_names = ["account"]
 
-openai_account_name = "$(openai_account_name)"
-openai_kind = "$(openai_kind)"
-openai_sku = "$(openai_sku)"
-openai_custom_subdomain_name = "$(openai_custom_subdomain_name)"
-openai_public_network_access_enabled = $(openai_public_network_access_enabled)
+#OPENAI_COGNITIVE_ACCOUNT
+openai_account_name = "az-sc-qa-oai-mari-000"
+openai_kind = "FormRecognizer"
+openai_sku = "S0"
+openai_custom_subdomain_name = "qa-oai-mari-000"
+openai_public_network_access_enabled = false
 
-private_endpoint_openai_name = "$(private_endpoint_openai_name)"
-private_service_connection_openai_name = "$(private_service_connection_openai_name)"
+#OPENAI_PRIVATE_ENDPOINT
+private_endpoint_openai_name = "az-sc-pep-qa-oai-mari-000"
+private_service_connection_openai_name = "az-sc-qa-psc-di-mari-000"
 openai_subresource_names = ["account"]
 
-bot_name = "$(bot_name)"
-bot_location = "$(bot_location)"
-bot_sku = "$(bot_sku)"
-public_network_access_enabled = $(public_network_access_enabled)
+#BOT_SERVICE_AZURE_BOT
+bot_name = "az-sc-qa-bot-mari-000"
+bot_location = "global"
+bot_sku = "S1"
+bot_public_network_access_enabled = false
 
-private_endpoint_bot_name = "$(private_endpoint_bot_name)"
-private_service_connection_bot_name = "$(private_service_connection_bot_name)" 
+#BOT_PRIVATE_ENDPOINT
+private_endpoint_bot_name = "az-sc-qa-pep-bot-mari-000"
+private_service_connection_bot_name = "az-sc-qa-psc-bot-mari-000"
 bot_subresource_names = ["bot"]
 
-
+#BOT_TOKEN_PRIVATE_ENDPOINT
+private_endpoint_bot_token_name = "az-sc-qa-pep-bot-mari-001"
+private_service_connection_bot_token_name = "az-sc-qa-psc-bot-mari-001" 
+bot_token_subresource_names = ["token"]

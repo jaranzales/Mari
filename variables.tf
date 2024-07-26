@@ -304,6 +304,11 @@ variable "sql_server_vnet_rule_name" {
   type = string
 }
 
+#MSSQL_DATABASE
+variable "sql_database_name" {        
+  type        = string
+}
+
 variable "sql_database_sku" {
   type = string
 }
@@ -483,11 +488,114 @@ variable "aisa_subresource_names" {
   type = list(string)
 }
 
-#====#
+#DI_COGNITIVE_ACCOUNT
+variable "document_intelligence_account_name" {
+  type = string
+}
 
+variable "document_intelligence_kind" {
+  type = string
+}
 
+variable "document_intelligence_sku" {
+  type = string
+}
 
+variable "document_intelligence_custom_subdomain_name" {
+  type = string
+}
 
+variable "document_intelligence_public_network_access_enabled" {
+  type = bool
+}
 
+#DI_PRIVATE_ENDPOINT
+variable "private_endpoint_di_name" {
+  type = string
+}
 
+variable "private_service_connection_di_name" {
+  type = string
+}
+
+variable "di_subresource_names" {
+  type = list(string)
+}
+
+#OPENAI_COGNITIVE_ACCOUNT
+variable "openai_account_name" {
+  type = string
+}
+
+variable "openai_kind" {
+  type = string
+}
+
+variable "openai_sku" {
+  type = string
+}
+
+variable "openai_custom_subdomain_name" {
+  type = string
+}
+
+variable "openai_public_network_access_enabled" {
+  type = bool
+}
+
+#OPENAI_PRIVATE_ENDPOINT
+variable "private_endpoint_openai_name" {
+  type = string
+}
+
+variable "private_service_connection_openai_name" {
+  type = string
+}
+
+variable "openai_subresource_names" {
+  type = list(string)
+}
+
+#BOT_SERVICE_AZURE_BOT
+variable "bot_name" {
+  type = string
+}
+
+variable "bot_location" {
+  type = string
+}
+
+variable "bot_sku" {
+  type = string
+}
+
+variable "bot_public_network_access_enabled" {
+  type = bool
+}
+
+#BOT_PRIVATE_ENDPOINT
+variable "private_endpoint_bot_name" {
+  type = string
+}
+
+variable "private_service_connection_bot_name" {
+  type = string
+}
+
+variable "bot_subresource_names" {
+  type = list(string)
+}
+
+#BOT_TOKEN_PRIVATE_ENDPOINT
+variable "private_endpoint_bot_token_name" {
+  type = string
+}
+
+variable "private_service_connection_bot_token_name" {
+  type = string
+}
+
+variable "bot_token_subresource_names" {
+  type = list(string)
+}
 

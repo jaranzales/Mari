@@ -13,7 +13,7 @@ variable "resource_group_name_dns" {
 variable "subscription_id_trv" {
   type        = string
   description = "DNS Subscription ID"
-  default     = "182e84ac-5f70-47e9-a016-6b2b91ce994d" #####VERIFICAR#####
+  default     = "182e84ac-5f70-47e9-a016-6b2b91ce994d"
   sensitive   = true
 }
 
