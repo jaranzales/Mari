@@ -149,8 +149,8 @@ module "mssql_server" {
   sql_server_name = var.sql_server_name
   resource_group_location = module.resource_group.resource_group_location
   resource_group_name = module.resource_group.resource_group_name
-  administrator_login = module.mssql_key_vault.admin_username.value
-  administrator_login_password = module.mssql_key_vault.admin_password.value
+  administrator_login = module.mssql_key_vault.admin_username
+  administrator_login_password = module.mssql_key_vault.admin_password
 }
 
 module "mssql_virtual_network_rule" {
@@ -176,6 +176,7 @@ module "mssql_private_endpoint" {
   subnet_id = module.azure_networking.subnet_db_id
   private_service_connection_name = var.private_service_connection_sql_name
   private_connection_resource_id = module.mssql_server.id
+  subresource_names = var.subresource_names_sql
   resource_group_name_dns = var.resource_group_name_dns
   private_dns_zone_ids = [ module.azure_networking.private_dns_zone_db_id ]
 }
@@ -373,14 +374,15 @@ module "openai_private_endpoint" {
   private_dns_zone_ids = [module.azure_networking.private_dns_zone_oai_id]
 }
 
-data "azurerm_client_config" "current" {}
+///data "azurerm_client_config" "current" {}
+resource "random_uuid" "appid" {}
 
 module "bot_service_azure_bot" {
   source = "./modules/bot_service_azure_bot"
   bot_name = var.bot_name
   resource_group_name = module.resource_group.resource_group_name
   location = var.bot_location
-  microsoft_app_id = data.azurerm_client_config.current.client_id
+  microsoft_app_id = random_uuid.appid.id
   bot_sku = var.bot_sku
   public_network_access_enabled = var.bot_public_network_access_enabled
 }

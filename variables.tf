@@ -327,6 +327,10 @@ variable "private_service_connection_sql_name" {
   type = string
 }
 
+variable "subresource_names_sql" {
+  type = list(string)
+}
+
 # ======================== MACHINE LEARNING ============================
 
 #ML_KEY_VAULT

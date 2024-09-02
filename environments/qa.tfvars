@@ -1,6 +1,6 @@
 subscription_id = "d92c9bc4-d242-48e1-a224-9b9c93d46134"
 
-resource_group_name = "az-sc-qa-rg-mari-000"
+resource_group_name = "az-sc-qa-rg-mari-001"
 resource_group_location = "eastus2"
 resource_group_tags = {
   environment = "qa"
@@ -14,7 +14,7 @@ sbnet_wapp_name = "az-sc-qa-snet-wapp-000"
 sbnet_stac_name = "az-sc-qa-snet-stac-000" 
 sbnet_ai_name = "az-sc-qa-snet-ai-000"
 sbnet_kv_name = "az-sc-qa-snet-kv-000"
-sbnet_db_name = "az-sc-qa-snet-db-001"
+sbnet_db_name = "az-sc-qa-snet-db-002"
 #DNS PRIVATE ZONES
 resource_group_name_dns = "az-trv-hubdev-rg-networking-001"
 private_dns_zone_name_wapp = "privatelink.azurewebsites.net"
@@ -106,6 +106,7 @@ sql_database_gb_size = "250"
 #MSSQL_PRIVATE_ENDPOINT
 private_endpoint_sql_name = "az-sc-qa-pep-sql-mari-000"
 private_service_connection_sql_name = "az-sc-qa-psc-sql-mari-000"
+subresource_names_sql = [ "sqlserver" ]
 
 # ================== MACHINE LEARNING =========================
 
